@@ -11,6 +11,7 @@ a.card:active{transform:scale(.98)}.t{display:flex;justify-content:space-between
 <script>
 // 新增一週：在下面陣列加一筆即可（順序不拘，會自動把最新週排最上面）
 const WEEKS = [
+  { week: 2, file: "week02.html", count: 27, sample: ["criticism", "infamous", "as far as something is concerned", "in terms of"] },
   { week: 1, file: "week01.html", count: 26, sample: ["concession", "unfold", "witness", "harrowing"] },
 ];
 document.getElementById("list").innerHTML = WEEKS.sort((a,b)=>b.week-a.week).map(w=>
