@@ -19,8 +19,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC",s
 .b.p{flex:2 1 130px;white-space:nowrap;background:var(--ac);color:#fff;border:0}
 .cue{padding:12px;border-radius:12px;font-size:20px;font-weight:700;background:var(--acs)}
 .list{display:flex;flex-direction:column;gap:8px}
-.pic{width:100%;max-width:min(100%,280px);aspect-ratio:1/1;object-fit:cover;border-radius:14px;margin:0 auto;display:block;background:#fff}
-.th{width:48px;height:48px;border-radius:10px;object-fit:cover;flex:0 0 48px;background:#fff}
 .it{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:14px;box-shadow:var(--sh);border:1px solid var(--ln);padding:12px;min-height:64px;cursor:pointer;transition:background .2s}
 .it.cur{background:var(--acs);border-color:var(--ac)}
 .n{font-size:13px;color:var(--mu);min-width:22px;text-align:right;font-variant-numeric:tabular-nums}
@@ -38,7 +36,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC",s
 <div class="w">
 <div id="cv" style="display:flex;flex-direction:column;gap:14px">
 <div class="card"><div class="mu" id="cnt" style="font-size:14px"></div>
-<img id="pic" class="pic" alt="" loading="lazy" decoding="async" width="512" height="512">
 <div id="word" style="font-size:44px;font-weight:800;word-break:break-word"></div>
 <div class="mu" id="ipa" style="font-size:20px"></div><div id="zh" style="font-size:24px"></div><div style="height:1px;background:var(--ln);margin:4px 0"></div>
 <div id="ph" style="font-size:28px;font-weight:700"></div><div class="mu" id="pz" style="font-size:19px"></div>
@@ -56,14 +53,13 @@ const SPK='<svg class="spk" viewBox="0 0 24 24" fill="none" stroke="currentColor
 function list(){return W.slice(G[g][1],G[g][2])}
 function seg(el,opts,sel,on){el.innerHTML="";opts.forEach((o,k)=>{const b=document.createElement("button");b.textContent=o;if(k===sel)b.className="on";b.onclick=()=>on(k);el.appendChild(b)})}
 function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
-const IMG="img/w2";
-function buildList(){const o=G[g][1];$("lv").innerHTML=list().map((c,k)=>`<div class="it" data-k="${k}"><span class="n">${o+k+1}</span>${SPK}<img class="th" src="${IMG}/${o+k}.webp" alt="" loading="lazy" decoding="async" width="48" height="48"><div class="mid"><div class="l1"><b>${esc(c[0])}</b><span class="ip">${esc(c[1])}</span><span class="z">${esc(c[2])}</span></div><div class="l2">${esc(c[3])}・${esc(c[4])}</div></div><button class="go" data-go="${k}">練習 ▶</button></div>`).join("");
+function buildList(){const o=G[g][1];$("lv").innerHTML=list().map((c,k)=>`<div class="it" data-k="${k}"><span class="n">${o+k+1}</span>${SPK}<div class="mid"><div class="l1"><b>${esc(c[0])}</b><span class="ip">${esc(c[1])}</span><span class="z">${esc(c[2])}</span></div><div class="l2">${esc(c[3])}・${esc(c[4])}</div></div><button class="go" data-go="${k}">練習 ▶</button></div>`).join("");
 $("lv").querySelectorAll(".it").forEach(el=>el.onclick=e=>{const k=+el.dataset.k;if(e.target.closest(".go")){stop();i=k;setView(0);echo()}else rowPlay(k)});marks()}
 function marks(scroll){$("lv").querySelectorAll(".it").forEach(el=>{const k=+el.dataset.k;el.classList.toggle("cur",playing&&k===i);el.classList.toggle("pl",k===pl)});
 if(scroll&&view===1){const el=$("lv").querySelector(".it.cur");if(el)el.scrollIntoView({block:"center",behavior:"smooth"})}}
 function setView(v){view=v;$("cv").classList.toggle("hid",v!==0);$("lv").classList.toggle("hid",v!==1);render();if(v===1)marks(true)}
 function render(){const l=list(),c=l[i];$("cnt").textContent=`${G[g][1]+i+1} / ${W.length}　（本組 ${i+1}/${l.length}）`;
-$("pic").src=`${IMG}/${G[g][1]+i}.webp`;$("pic").alt=c[0];$("word").textContent=c[0];$("ipa").textContent=c[1];$("zh").textContent=c[2];$("ph").textContent=c[3];$("pz").textContent=c[4];
+$("word").textContent=c[0];$("ipa").textContent=c[1];$("zh").textContent=c[2];$("ph").textContent=c[3];$("pz").textContent=c[4];
 seg($("view"),["卡片","列表"],view,setView);
 seg($("grp"),G.map(x=>x[0]),g,k=>{stop();g=k;i=0;buildList();render()});seg($("rate"),R.map(r=>r+"x"),R.indexOf(rate),k=>{rate=R[k];au.playbackRate=rate;render()});
 $("play").textContent=playing?"暫停":"▶ 回音法播放";marks()}
