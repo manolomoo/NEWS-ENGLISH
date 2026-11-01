@@ -27,8 +27,8 @@ button.g{background:var(--cd);color:var(--fg);border:1px solid var(--ln)}button:
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--cd);border-top:2px solid var(--pk);border-radius:20px 20px 0 0;padding:16px 18px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px #0003;max-width:560px;margin:0 auto}
 .sq{font-size:21px;line-height:1.55;margin:10px 0;padding:12px;background:var(--bg);border-radius:12px}.qq{margin:14px 0 4px;font-weight:700}
 .three{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px}.three button{margin:0;font-size:18px;padding:12px 4px;white-space:nowrap}
-.mp{width:180px;height:180px;object-fit:contain;border-radius:18px;background:#fff;display:block;margin:6px auto}
-.ga img{width:100%;aspect-ratio:1;object-fit:contain;border-radius:10px;background:#fff;display:block;margin-bottom:4px}
+.mp{width:150px;height:150px;border-radius:32px;display:flex;align-items:center;justify-content:center;font-size:84px;margin:6px auto;line-height:1}
+.ga .ic{width:100%;aspect-ratio:1.4;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:52px;margin-bottom:6px;line-height:1}
 #ww{font-size:40px}.cue2{margin-top:10px;padding:12px;border-radius:12px;background:var(--ln);font-size:24px;font-weight:800;color:var(--mu)}.cue2.listen{color:var(--fg)}.cue2.echo{background:#fde3ef;color:#a3195b}.cue2.shadow{background:var(--pk);color:#fff}
 .hp{font-size:18px;margin:4px 0}.cue{text-align:center;color:var(--pk);font-weight:700;margin:8px 0}
 </style></head><body><div class="w">
@@ -106,7 +106,7 @@ function fa(b,j){const bs=document.querySelectorAll("#fo button");bs.forEach(x=>
 
 let grp=3,rate=0.8,run=0,echoing=false;const GR=[[0,9,"1–9"],[9,18,"10–18"],[18,27,"19–27"],[0,27,"全部"]];
 const au2=new Audio();au2.preservesPitch=true;au2.webkitPreservesPitch=true;
-const IMG=k=>`img/w2/${k}.webp`;
+const EM=["👎", "😈", "🙋‍♀️", "📏", "🔮", "🤸", "💎", "🥫", "🥊", "🙋", "🔭", "🌌", "🍞", "💡", "✨", "🪐", "✅", "🎃", "💰🤫", "📣", "💀", "👻", "🔁", "📸", "➰", "🚫", "🧘"];const BG=["#fde3ef","#e3f0fd","#e6f7e9","#fff4d6","#efe6fd"];const IC=(k,c)=>`<div class="${c}" style="background:${BG[k%5]}">${EM[k]}</div>`;
 function learn(){if(idx<GR[grp][0]||idx>=GR[grp][1])idx=GR[grp][0];
 M.innerHTML=`<div class="seg">${GR.map((g,k)=>`<button class="${k==grp?"on":""}" onclick="stopE();grp=${k};idx=${g[0]};learn()">${g[2]}</button>`).join("")}</div>
 <div class="card" id="cur" style="text-align:center"></div>
@@ -116,8 +116,8 @@ M.innerHTML=`<div class="seg">${GR.map((g,k)=>`<button class="${k==grp?"on":""}"
 <div class="card"><h2>🖼️ 圖卡</h2><div class="mu">點圖卡聽發音，並切換到這張卡練習</div><div class="ga" id="ga"></div></div>
 <div class="card" id="qz"></div>
 <p class="mu" style="text-align:center">節奏：每張卡念兩次（單字＋片語），每次後先「回音」（心裡默念）再「跟讀」（大聲說），然後自動換下一張。</p>`;cur();grid();quiz(1)}
-function cur(){const w=W[idx],d=S.done[idx];document.getElementById("cur").innerHTML=`<div class="mu">${idx-GR[grp][0]+1} / ${GR[grp][1]-GR[grp][0]} ${d?"✅":""}</div><img class="mp" src="${IMG(idx)}" alt=""><div class="big" id="ww">${w[0]}</div><div class="ipa">${w[1]}</div><div class="zh">${w[2]}</div><div class="ph"><b>${w[3]}</b><br><span class="mu">${w[4]}</span></div><div class="cue2" id="cue">按「回音法播放」開始</div>`;const p=document.getElementById("pl");if(p)p.textContent=echoing?"⏸ 暫停":"▶ 回音法播放"}
-function grid(){const g=GR[grp];let h="";for(let k=g[0];k<g[1];k++){const w=W[k];h+=`<div class="ca${k==idx?" on":""}" onclick="tap(${k})"><img loading="lazy" src="${IMG(k)}" alt=""><b>${w[0]}</b><div class="mu">${w[2].split(/[、；]/)[0]}</div>${S.done[k]?'<span class="dn">✅</span>':""}</div>`}document.getElementById("ga").innerHTML=h}
+function cur(){const w=W[idx],d=S.done[idx];document.getElementById("cur").innerHTML=`<div class="mu">${idx-GR[grp][0]+1} / ${GR[grp][1]-GR[grp][0]} ${d?"✅":""}</div>${IC(idx,"mp")}<div class="big" id="ww">${w[0]}</div><div class="ipa">${w[1]}</div><div class="zh">${w[2]}</div><div class="ph"><b>${w[3]}</b><br><span class="mu">${w[4]}</span></div><div class="cue2" id="cue">按「回音法播放」開始</div>`;const p=document.getElementById("pl");if(p)p.textContent=echoing?"⏸ 暫停":"▶ 回音法播放"}
+function grid(){const g=GR[grp];let h="";for(let k=g[0];k<g[1];k++){const w=W[k];h+=`<div class="ca${k==idx?" on":""}" onclick="tap(${k})">${IC(k,"ic")}<b>${w[0]}</b><div class="mu">${w[2].split(/[、；]/)[0]}</div>${S.done[k]?'<span class="dn">✅</span>':""}</div>`}document.getElementById("ga").innerHTML=h}
 function sel(k){idx=k;cur();grid()}
 function mv(d){const g=GR[grp];sel(g[0]+((idx-g[0]+d+(g[1]-g[0]))%(g[1]-g[0])))}
 function play1(key){return new Promise(res=>{let st=0,done=false;const fin=()=>{if(done)return;done=true;let d=st?(performance.now()-st)/1000:0;if(!(d>0.2))d=(au2.duration||1)/rate;res(d)};
