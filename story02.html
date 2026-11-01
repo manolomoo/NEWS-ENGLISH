@@ -46,36 +46,39 @@ const CATS=[
 ["🏠 豪宅",[["小套房",5,600],["信義區公寓",12,3000],["帝寶",20,9000],["東京港區塔樓",30,20000]]],
 ["🚗 名車",[["Mini Cooper",7,800],["Benz",14,3200],["Porsche 911",22,9500],["Rolls-Royce",30,22000]]]];
 const STK=[["台積電 TSMC",100],["輝達 NVIDIA",150],["Apple",120]];
-const BOSS={name:"🛍️ Black Friday 搶購大魔王",hp:100,drop:["🎀 黑五限定 Chanel 小香包",3000]};
+const SH=5;const BOSS={name:"🛍️ Black Friday 搶購大魔王",hp:100,drop:["🎀 黑五限定 Chanel 小香包",3000]};
 const K="rpg02";let S=JSON.parse(localStorage.getItem(K)||"null")||{exp:0,coin:0,own:[],stk:[0,0,0],px:STK.map(s=>s[1]),done:{},boss:0};
 // stock fluctuation each visit
 S.px=S.px.map((p,i)=>Math.max(20,Math.round(p*(0.85+Math.random()*0.32))));
+delete S.coin;S.stk=S.stk||[0,0,0];S.own=S.own||[];
+function award(){const l=lv()[0],nw=[];CATS.forEach((c,ci)=>c[1].forEach((it,ii)=>{const id=ci+"-"+ii;if(l>=it[1]&&!S.own.includes(id)){S.own.push(id);nw.push(c[0].split(" ")[0]+" "+it[0])}}));return nw}
+function nextR(){const l=lv()[0];let m=99,n=[];CATS.forEach(c=>c[1].forEach(it=>{if(it[1]>l){if(it[1]<m){m=it[1];n=[]}if(it[1]==m)n.push(c[0].split(" ")[0]+" "+it[0])}}));return m<99?[m,n]:null}
 const save=()=>localStorage.setItem(K,JSON.stringify(S));save();
 const need=l=>Math.round(60*Math.pow(l,1.45)); // 同 Español bot 曲線
 function lv(){let l=1,e=S.exp;while(e>=need(l)){e-=need(l);l++}return [l,e,need(l)]}
 const title=l=>TITLES.filter(t=>l>=t[0]).pop()[1];
-const fmt=n=>n.toLocaleString();
-function worth(){let v=S.coin;CATS.forEach((c,ci)=>c[1].forEach((it,ii)=>{if(S.own.includes(ci+"-"+ii))v+=it[2]}));S.stk.forEach((n,i)=>v+=n*S.px[i]);if(S.own.includes("boss"))v+=BOSS.drop[1];return v}
+const fmt=n=>n.toLocaleString();award();save();
+function worth(){let v=0;CATS.forEach((c,ci)=>c[1].forEach((it,ii)=>{if(S.own.includes(ci+"-"+ii))v+=it[2]}));S.stk.forEach((n,i)=>v+=n*S.px[i]);if(S.own.includes("boss"))v+=BOSS.drop[1];return v}
 function toast(t){const e=document.getElementById("toast");e.textContent=t;e.hidden=0;clearTimeout(toast.h);toast.h=setTimeout(()=>e.hidden=1,1600)}
 let lastT={};
 function gain(x,c,key){const now=Date.now();if(key){if(now-(lastT[key]||0)<1200)return;lastT[key]=now}
-const a=lv()[0];S.exp+=x;S.coin+=c;save();pop(`+${x} EXP${c?"  +"+c+"💰":""}`);const b=lv()[0];if(b>a)setTimeout(()=>levelUp(b),350);hud()}
+const a=lv()[0];S.exp+=x;save();pop(`+${x} EXP`);const b=lv()[0];if(b>a)setTimeout(()=>levelUp(b),350);hud()}
 function pop(t){const e=document.createElement("div");e.className="xp";e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1300)}
 function beep(){try{const A=window.AudioContext||window.webkitAudioContext,c=new A();[523,659,784,1047].forEach((f,i)=>{const o=c.createOscillator(),g=c.createGain();o.type="triangle";o.frequency.value=f;g.gain.setValueAtTime(.0001,c.currentTime+i*.12);g.gain.exponentialRampToValueAtTime(.18,c.currentTime+i*.12+.02);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+i*.12+.3);o.connect(g).connect(c.destination);o.start(c.currentTime+i*.12);o.stop(c.currentTime+i*.12+.32)});setTimeout(()=>c.close(),1500)}catch(e){}}
-function levelUp(L){const d=document.createElement("div");d.className="up";const nw=[];CATS.forEach(c=>c[1].forEach(it=>{if(it[1]==L)nw.push(c[0].split(" ")[0]+" "+it[0])}));const tt=TITLES.find(t=>t[0]==L);
-d.innerHTML=`<div><div style="font-size:52px">👑</div><div style="font-weight:800;color:var(--pk)">LEVEL UP!</div><h2>Lv ${L}</h2><div style="font-weight:800">${title(L)}${tt?" ✨新稱號":""}</div>${nw.length?"<div style='margin-top:8px'>精品店解鎖："+nw.join("、")+"</div>":""}<div class="mu" style="margin-top:8px">點一下關閉</div></div>`;
-d.onclick=()=>d.remove();document.body.appendChild(d);setTimeout(()=>d.remove(),3300);beep();
+function levelUp(L){const d=document.createElement("div");d.className="up";const nw=award();save();const tt=TITLES.find(t=>t[0]==L);
+d.innerHTML=`<div><div style="font-size:52px">👑</div><div style="font-weight:800;color:var(--pk)">LEVEL UP!</div><h2>Lv ${L}</h2><div style="font-weight:800">${title(L)}${tt?" ✨新稱號":""}</div>${nw.length?"<div style='margin-top:8px;font-weight:800'>🎁 獲得："+nw.join("、")+"</div>":""}<div class="mu" style="margin-top:8px">點一下關閉</div></div>`;
+d.onclick=()=>d.remove();document.body.appendChild(d);setTimeout(()=>d.remove(),nw.length?5000:3300);beep();
 for(let k=0;k<18;k++){const c=document.createElement("span");c.className="cf";c.textContent=["💎","✨","👜","💖"][k%4];c.style.left=Math.random()*100+"vw";c.style.animationDelay=Math.random()*.5+"s";document.body.appendChild(c);setTimeout(()=>c.remove(),2600)}}
-function hud(){const[l,e,n]=lv();document.getElementById("hud").innerHTML=`<div class="t">Lv${l} ${title(l)}</div><div class="bar"><i style="width:${e/n*100}%"></i></div><div class="row"><span>EXP ${e}/${n}</span><span>💰 ${fmt(S.coin)}</span><span>身價 ${fmt(worth())}</span></div>`}
+function hud(){const[l,e,n]=lv();document.getElementById("hud").innerHTML=`<div class="t">Lv${l} ${title(l)}</div><div class="bar"><i style="width:${e/n*100}%"></i></div><div class="row"><span>EXP ${e}/${n}</span><span>身價 $${fmt(worth())}</span></div>${(r=>r?`<div class="row" style="margin-top:4px"><span>🎁 Lv${r[0]} 獲得：${r[1].join("、")}</span></div>`:"")(nextR())}`}
 const au=new Audio();let q=[];
 function play(keys){q=keys.slice();next()}
 function next(){if(!q.length)return;au.src=C[q.shift()];au.play().catch(()=>{});}
 au.onended=()=>setTimeout(next,450);
 const shuf=a=>a.map(x=>[Math.random(),x]).sort((p,r)=>p[0]-r[0]).map(x=>x[1]);
 const M=document.getElementById("main");let tab="learn",idx=0;
-const TABS=[["story","📖<br>課文"],["learn","📇<br>單字"],["boss","⚔️<br>Boss"],["shop","🛍️<br>精品店"],["me","💼<br>資產"]];
+const TABS=[["story","📖<br>課文"],["learn","📇<br>單字"],["boss","⚔️<br>Boss"],["me","💼<br>資產"]];
 function nav(){document.getElementById("nav").innerHTML=TABS.map(t=>`<button class="${t[0]==tab?"on":""}" onclick="go('${t[0]}')">${t[1]}</button>`).join("")}
-function go(t){if(typeof stopE=='function')stopE();tab=t;nav();au.pause();q=[];({story,learn,boss,shop,me})[t]();scrollTo(0,0)}
+function go(t){if(typeof stopE=='function')stopE();tab=t;nav();au.pause();q=[];({story,learn,boss,me})[t]();scrollTo(0,0)}
 
 let ch=0,showTr=false;const SD=()=>S.sd||(S.sd={});
 const esc=t=>t.replace(/&/g,"&amp;").replace(/</g,"&lt;");
@@ -144,24 +147,20 @@ function ans(b,j){document.querySelectorAll("#op button").forEach(x=>x.disabled=
 if(ok){b.classList.add("ok");streak++;gain(Math.round(15*(streak>=10?2:streak>=5?1.5:streak>=3?1.2:1)),25+Math.min(streak,5)*5);toast(streak>=3?`✅ Combo ${streak}！`:`✅ 正確！`)}else{b.classList.add("no");streak=0;[...document.querySelectorAll("#op button")][QQ.opts.indexOf(QQ.i)].classList.add("ok");gain(3,0);toast("❌ 再加油（練習也有 +3）")}
 play([QQ.i+"w"]);document.getElementById("nq").hidden=false}
 let B=null;
-function boss(){if(!B){M.innerHTML=`<div class="card"><h2>${BOSS.name}</h2><p>魔王 HP ${BOSS.hp}，你有 5 顆 ❤️。答對每題打 20 傷害，答錯扣 1 顆心。</p><p class="mu">打贏：+150 EXP +500💰${S.own.includes("boss")?"":"，掉落「"+BOSS.drop[0]+"」"}（已打贏 ${S.boss} 次）</p><button onclick="B={hp:${BOSS.hp},me:5};bq()">⚔️ 開戰！</button></div>`;return}bq()}
+function boss(){if(!B){M.innerHTML=`<div class="card"><h2>${BOSS.name}</h2><p>魔王 HP ${BOSS.hp}，你有 5 顆 ❤️。答對每題打 20 傷害，答錯扣 1 顆心。</p><p class="mu">打贏：+150 EXP ＋ 📈 ${STK[S.boss%3][0]} ${SH} 股${S.own.includes("boss")?"":"，首勝掉落「"+BOSS.drop[0]+"」"}（已打贏 ${S.boss} 次）</p><button onclick="B={hp:${BOSS.hp},me:5};bq()">⚔️ 開戰！</button></div>`;return}bq()}
 function bq(){QQ=Math.random()<.4?mkB(-1):mkQ();const w=W[QQ.i];if(QQ.t==2){M.innerHTML=`<div class="card"><h2>${BOSS.name}</h2><div class="hp">👹 HP ${"🟥".repeat(B.hp/20)}${"⬜".repeat((BOSS.hp-B.hp)/20)}</div><div class="hp">你 ${"❤️".repeat(B.me)}${"🖤".repeat(5-B.me)}</div><div class="mu">課文填空（選原形）</div><div class="sq">${QQ.sent}</div><div id="op">${QQ.opts.map(j=>`<button class="g" onclick="bans(this,${j})">${W[j][0]}</button>`).join("")}</div></div>`;return}
 M.innerHTML=`<div class="card"><h2>${BOSS.name}</h2><div class="hp">👹 HP ${"🟥".repeat(B.hp/20)}${"⬜".repeat((BOSS.hp-B.hp)/20)}</div><div class="hp">你 ${"❤️".repeat(B.me)}${"🖤".repeat(5-B.me)}</div>
 ${QQ.t?`<div class="big">${w[0]}</div>`:`<div class="zh" style="font-size:26px;margin:14px 0">${w[2]}</div>`}
 <div id="op">${QQ.opts.map(j=>`<button class="g" onclick="bans(this,${j})">${QQ.t?W[j][2]:W[j][0]}</button>`).join("")}</div></div>`;if(QQ.t)play([QQ.i+"w"])}
 function bans(b,j){document.querySelectorAll("#op button").forEach(x=>x.disabled=true);const ok=j==QQ.i;b.classList.add(ok?"ok":"no");if(ok){B.hp-=20;gain(15,10);toast("💥 20 傷害！")}else{B.me--;gain(3,0);toast("💔 被搶走了！")}
-setTimeout(()=>{if(B.hp<=0){S.boss++;let m="";if(!S.own.includes("boss")){S.own.push("boss");m="<p>🎁 掉落："+BOSS.drop[0]+"</p>"}gain(150,500);B=null;M.innerHTML=`<div class="card"><h2>🏆 打敗魔王！</h2><p>+150 EXP +500💰</p>${m}<button onclick="go('boss')">再打一次</button></div>`}
+setTimeout(()=>{if(B.hp<=0){const si=S.boss%3;S.stk[si]+=SH;S.boss++;let m="<p>📈 獲得 "+STK[si][0]+" × "+SH+" 股（現價 $"+S.px[si]+"）</p>";if(!S.own.includes("boss")){S.own.push("boss");m="<p>🎁 掉落："+BOSS.drop[0]+"</p>"}gain(150,0);B=null;M.innerHTML=`<div class="card"><h2>🏆 打敗魔王！</h2><p>+150 EXP</p>${m}<button onclick="go('boss')">再打一次</button></div>`}
 else if(B.me<=0){B=null;M.innerHTML=`<div class="card"><h2>😵 戰敗…</h2><p>先回去練習單字再來挑戰！</p><button onclick="go('learn')">去練習</button><button class="g" onclick="go('boss')">再挑戰</button></div>`}else bq()},ok?900:1600)}
-function shop(){const l=lv()[0];
-M.innerHTML=CATS.map((c,ci)=>`<div class="card"><h2>${c[0]}</h2>${c[1].map((it,ii)=>{const id=ci+"-"+ii,o=S.own.includes(id);return`<div class="it"><div>${it[0]}<div class="mu">Lv${it[1]} 解鎖・💰${fmt(it[2])}</div></div>${o?'<span>✅ 已擁有</span>':l<it[1]?'<span class="mu">🔒</span>':`<button onclick="buy('${id}')" ${S.coin<it[2]?"disabled":""}>購買</button>`}</div>`}).join("")}</div>`).join("")+
-`<div class="card"><h2>📈 股票</h2><p class="mu">每次打開頁面股價都會隨機漲跌</p>${STK.map((s,i)=>`<div class="it"><div>${s[0]}<div class="mu">股價 💰${S.px[i]}・持有 ${S.stk[i]} 股</div></div><div><button onclick="trade(${i},1)" ${S.coin<S.px[i]?"disabled":""}>買</button> <button class="g" onclick="trade(${i},-1)" ${S.stk[i]?"":"disabled"}>賣</button></div></div>`).join("")}</div>`}
-function buy(id){const[ci,ii]=id.split("-").map(Number),it=CATS[ci][1][ii];if(S.coin<it[2])return;S.coin-=it[2];S.own.push(id);save();hud();toast("🛍️ 買下 "+it[0]+"！");shop()}
-function trade(i,d){if(d>0){if(S.coin<S.px[i])return;S.coin-=S.px[i];S.stk[i]++}else{if(!S.stk[i])return;S.coin+=S.px[i];S.stk[i]--}save();hud();shop()}
-function me(){const[l]=lv();const items=[];CATS.forEach((c,ci)=>c[1].forEach((it,ii)=>{if(S.own.includes(ci+"-"+ii))items.push(c[0].split(" ")[0]+" "+it[0])}));if(S.own.includes("boss"))items.push(BOSS.drop[0]);
-M.innerHTML=`<div class="card"><h2>💼 個人資產</h2><div class="big">💰 ${fmt(worth())}</div><div class="ipa">總身價</div>
-<p>稱號：Lv${l} ${title(l)}<br>現金：💰${fmt(S.coin)}<br>練過單字：${Object.keys(S.done).length} / ${W.length}<br>打倒魔王：${S.boss} 次</p>
-<h2>收藏</h2>${items.length?items.map(x=>`<div class="it">${x}</div>`).join(""):'<p class="mu">還沒有收藏，去精品店逛逛吧！</p>'}
-${S.stk.some(n=>n)?`<h2>股票</h2>`+STK.map((s,i)=>S.stk[i]?`<div class="it">${s[0]} × ${S.stk[i]}<span>💰${fmt(S.stk[i]*S.px[i])}</span></div>`:"").join(""):""}
-</div><button class="g" onclick="if(confirm('確定要重新開始？所有進度會清除')){localStorage.removeItem(K);location.reload()}">🔄 重新開始</button>`}
+function me(){const[l]=lv();const r=nextR();
+M.innerHTML=`<div class="card"><h2>💼 個人資產</h2><div class="big">$${fmt(worth())}</div><div class="ipa">總身價（收藏＋股票市值）</div>
+<p>稱號：Lv${l} ${title(l)}<br>練過單字：${Object.keys(S.done).length} / ${W.length}<br>打倒魔王：${S.boss} 次</p>${r?`<p class="mu">🎁 下一個獎勵：Lv${r[0]} → ${r[1].join("、")}</p>`:""}</div>
+<div class="card"><h2>📈 股票</h2><p class="mu">打贏 Boss 就拿 ${SH} 股（台積電→輝達→Apple 輪流）。股價每次打開頁面隨機漲跌。</p>${STK.map((s,i)=>`<div class="it"><div>${s[0]}<div class="mu">股價 $${S.px[i]}・持有 ${S.stk[i]} 股</div></div><span>$${fmt(S.stk[i]*S.px[i])}</span></div>`).join("")}</div>
+${CATS.map((c,ci)=>`<div class="card"><h2>${c[0]}</h2>${c[1].map((it,ii)=>{const o=S.own.includes(ci+"-"+ii);return`<div class="it" style="${o?"":"opacity:.4"}"><div>${o?"✅":"🔒"} ${it[0]}<div class="mu">Lv${it[1]} 獲得・$${fmt(it[2])}</div></div></div>`}).join("")}</div>`).join("")}
+<div class="card"><h2>🏆 魔王掉落</h2><div class="it" style="${S.own.includes("boss")?"":"opacity:.4"}">${S.own.includes("boss")?"✅":"🔒"} ${BOSS.drop[0]}<span class="mu">首次打贏</span></div></div>
+<button class="g" onclick="if(confirm('確定要重新開始？所有進度會清除')){localStorage.removeItem(K);location.reload()}">🔄 重新開始</button>`}
 hud();go("story");
 </script></body></html>
