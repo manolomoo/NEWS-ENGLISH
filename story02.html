@@ -2,31 +2,35 @@
 <title>貴婦之路 RPG・課文篇・第2週</title><style>
 :root{--bg:#fbf6f1;--fg:#2a1f1d;--mu:#8a7a74;--cd:#fff;--ln:#eadfd6;--ac:#b8860b;--pk:#d9468f;--gn:#2e9d5b;--rd:#d64545}
 @media(prefers-color-scheme:dark){:root{--bg:#17131a;--fg:#f2ebe6;--mu:#a99ca0;--cd:#221c25;--ln:#3a3040}}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;font-size:17px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;font-size:20px}
 .w{max-width:560px;margin:0 auto;padding:12px 14px calc(90px + env(safe-area-inset-bottom))}
-a{color:var(--ac)}.top{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mu)}
+a{color:var(--ac)}.top{display:flex;justify-content:space-between;align-items:center;font-size:17px;color:var(--mu)}
 .hud{background:var(--cd);border:1px solid var(--ln);border-radius:16px;padding:12px 14px;margin:10px 0}
-.hud .t{font-weight:800;font-size:19px}.bar{height:10px;background:var(--ln);border-radius:9px;overflow:hidden;margin:8px 0 4px}.bar i{display:block;height:100%;background:linear-gradient(90deg,#f5b7d2,var(--pk))}
-.row{display:flex;justify-content:space-between;font-size:14px;color:var(--mu)}
+.hud .t{font-weight:800;font-size:22px}.bar{height:10px;background:var(--ln);border-radius:9px;overflow:hidden;margin:8px 0 4px}.bar i{display:block;height:100%;background:linear-gradient(90deg,#f5b7d2,var(--pk))}
+.row{display:flex;justify-content:space-between;font-size:17px;color:var(--mu)}
 .card{background:var(--cd);border:1px solid var(--ln);border-radius:16px;padding:16px;margin:10px 0}
-h2{font-size:20px;margin:6px 0 10px}.big{font-size:30px;font-weight:800;text-align:center;margin:6px 0}.ipa{text-align:center;color:var(--mu)}
-.zh{text-align:center;font-size:19px;margin:6px 0}.ph{text-align:center;font-size:18px;margin-top:10px}
+h2{font-size:24px;margin:6px 0 10px}.big{font-size:35px;font-weight:800;text-align:center;margin:6px 0}.ipa{text-align:center;color:var(--mu)}
+.zh{text-align:center;font-size:22px;margin:6px 0}.ph{text-align:center;font-size:21px;margin-top:10px}
 button{font:inherit;border:0;border-radius:12px;padding:13px 14px;background:var(--pk);color:#fff;font-weight:700;width:100%;margin:5px 0;min-height:48px}
 button.g{background:var(--cd);color:var(--fg);border:1px solid var(--ln)}button:disabled{opacity:.4}button:active{transform:scale(.98)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ok{background:var(--gn)!important;color:#fff!important}.no{background:var(--rd)!important;color:#fff!important}
 .nav{position:fixed;left:0;right:0;bottom:0;background:var(--cd);border-top:1px solid var(--ln);display:flex;padding-bottom:env(safe-area-inset-bottom)}
-.nav button{background:none;color:var(--mu);margin:0;border-radius:0;font-size:13px;padding:8px 2px;line-height:1.3}.nav button.on{color:var(--pk)}
+.nav button{background:none;color:var(--mu);margin:0;border-radius:0;font-size:15px;padding:8px 2px;line-height:1.3}.nav button.on{color:var(--pk)}
 .it{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--ln);gap:8px}.it:last-child{border:0}
-.it button{width:auto;min-width:86px;margin:0;padding:9px 12px;min-height:40px;font-size:15px}.mu{color:var(--mu);font-size:14px}
+.it button{width:auto;min-width:86px;margin:0;padding:9px 12px;min-height:40px;font-size:18px}.mu{color:var(--mu);font-size:17px}
 .toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#2a1f1d;color:#fff;padding:10px 16px;border-radius:12px;z-index:9;font-weight:700;max-width:90%;text-align:center}
-.xp{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);z-index:97;font-weight:900;font-size:22px;color:var(--pk);pointer-events:none;animation:xp 1.3s ease forwards;text-shadow:0 1px 0 #fff;white-space:nowrap}@keyframes xp{0%{opacity:0;margin-bottom:-10px}20%{opacity:1}100%{opacity:0;margin-bottom:70px}}.up{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:#0008;animation:upf 3.2s ease forwards}.up>div{background:var(--cd);border-radius:22px;padding:22px 26px;text-align:center;border:3px solid var(--pk);max-width:86vw;animation:upz .5s cubic-bezier(.2,1.6,.4,1)}.up h2{font-size:32px;margin:4px 0;color:var(--ac)}@keyframes upz{from{transform:scale(.2)}to{transform:scale(1)}}@keyframes upf{0%,85%{opacity:1}100%{opacity:0;visibility:hidden}}.cf{position:fixed;top:-30px;z-index:101;font-size:24px;pointer-events:none;animation:cf 2.4s linear forwards}@keyframes cf{to{transform:translateY(110vh) rotate(360deg)}}
-.ga{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-top:10px}.ca{position:relative;border:1px solid var(--ln);border-radius:12px;padding:10px;text-align:center;font-size:16px;cursor:pointer}.ca.on{border-color:var(--pk);box-shadow:0 0 0 2px var(--pk) inset}.ca .mu{font-size:13px}.dn{position:absolute;top:4px;right:6px;font-size:12px}
-.seg{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px;-webkit-overflow-scrolling:touch}.seg button{flex:0 0 auto;width:auto;margin:0;padding:9px 13px;min-height:40px;font-size:15px;background:var(--cd);color:var(--fg);border:1px solid var(--ln)}.seg button.on{background:var(--pk);color:#fff;border-color:var(--pk)}
-.sn{border-top:1px solid var(--ln);padding:12px 0}.sn:first-of-type{border:0}.sn .en{font-size:18px;line-height:1.55}.sn.on .en{color:var(--pk)}.sn .tr{color:var(--mu);font-size:15px;margin-top:4px}.sn .bt{display:flex;gap:6px;margin-top:6px}.sn .bt button{width:auto;flex:1;margin:0;padding:8px;min-height:40px;font-size:15px}
+.xp{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);z-index:97;font-weight:900;font-size:26px;color:var(--pk);pointer-events:none;animation:xp 1.3s ease forwards;text-shadow:0 1px 0 #fff;white-space:nowrap}@keyframes xp{0%{opacity:0;margin-bottom:-10px}20%{opacity:1}100%{opacity:0;margin-bottom:70px}}.up{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:#0008;animation:upf 3.2s ease forwards}.up>div{background:var(--cd);border-radius:22px;padding:22px 26px;text-align:center;border:3px solid var(--pk);max-width:86vw;animation:upz .5s cubic-bezier(.2,1.6,.4,1)}.up h2{font-size:38px;margin:4px 0;color:var(--ac)}@keyframes upz{from{transform:scale(.2)}to{transform:scale(1)}}@keyframes upf{0%,85%{opacity:1}100%{opacity:0;visibility:hidden}}.cf{position:fixed;top:-30px;z-index:101;font-size:28px;pointer-events:none;animation:cf 2.4s linear forwards}@keyframes cf{to{transform:translateY(110vh) rotate(360deg)}}
+.ga{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-top:10px}.ca{position:relative;border:1px solid var(--ln);border-radius:12px;padding:10px;text-align:center;font-size:19px;cursor:pointer}.ca.on{border-color:var(--pk);box-shadow:0 0 0 2px var(--pk) inset}.ca .mu{font-size:15px}.dn{position:absolute;top:4px;right:6px;font-size:14px}
+.seg{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px;-webkit-overflow-scrolling:touch}.seg button{flex:0 0 auto;width:auto;margin:0;padding:9px 13px;min-height:40px;font-size:18px;background:var(--cd);color:var(--fg);border:1px solid var(--ln)}.seg button.on{background:var(--pk);color:#fff;border-color:var(--pk)}
+.sn{border-top:1px solid var(--ln);padding:12px 0}.sn:first-of-type{border:0}.sn .en{font-size:21px;line-height:1.55}.sn.on .en{color:var(--pk)}.sn .tr{color:var(--mu);font-size:18px;margin-top:4px}.sn .bt{display:flex;gap:6px;margin-top:6px}.sn .bt button{width:auto;flex:1;margin:0;padding:8px;min-height:40px;font-size:18px}
 .v{background:#fde3ef;color:#a3195b;border-radius:5px;padding:0 3px;font-weight:700;cursor:pointer}@media(prefers-color-scheme:dark){.v{background:#4a2338;color:#ffb3d6}}
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--cd);border-top:2px solid var(--pk);border-radius:20px 20px 0 0;padding:16px 18px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px #0003;max-width:560px;margin:0 auto}
-.sq{font-size:18px;line-height:1.55;margin:10px 0;padding:12px;background:var(--bg);border-radius:12px}.qq{margin:14px 0 4px;font-weight:700}
-.hp{font-size:15px;margin:4px 0}.cue{text-align:center;color:var(--pk);font-weight:700;margin:8px 0}
+.sq{font-size:21px;line-height:1.55;margin:10px 0;padding:12px;background:var(--bg);border-radius:12px}.qq{margin:14px 0 4px;font-weight:700}
+.three{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px}.three button{margin:0;font-size:18px;padding:12px 4px;white-space:nowrap}
+.mp{width:180px;height:180px;object-fit:contain;border-radius:18px;background:#fff;display:block;margin:6px auto}
+.ga img{width:100%;aspect-ratio:1;object-fit:contain;border-radius:10px;background:#fff;display:block;margin-bottom:4px}
+#ww{font-size:40px}.cue2{margin-top:10px;padding:12px;border-radius:12px;background:var(--ln);font-size:24px;font-weight:800;color:var(--mu)}.cue2.listen{color:var(--fg)}.cue2.echo{background:#fde3ef;color:#a3195b}.cue2.shadow{background:var(--pk);color:#fff}
+.hp{font-size:18px;margin:4px 0}.cue{text-align:center;color:var(--pk);font-weight:700;margin:8px 0}
 </style></head><body><div class="w">
 <div class="top"><a href="index.html">← 回目錄</a><span>第 2 週・課文＋單字 RPG</span></div>
 <div id="hud" class="hud"></div><div id="main"></div></div>
@@ -59,7 +63,7 @@ const a=lv()[0];S.exp+=x;S.coin+=c;save();pop(`+${x} EXP${c?"  +"+c+"💰":""}`)
 function pop(t){const e=document.createElement("div");e.className="xp";e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1300)}
 function beep(){try{const A=window.AudioContext||window.webkitAudioContext,c=new A();[523,659,784,1047].forEach((f,i)=>{const o=c.createOscillator(),g=c.createGain();o.type="triangle";o.frequency.value=f;g.gain.setValueAtTime(.0001,c.currentTime+i*.12);g.gain.exponentialRampToValueAtTime(.18,c.currentTime+i*.12+.02);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+i*.12+.3);o.connect(g).connect(c.destination);o.start(c.currentTime+i*.12);o.stop(c.currentTime+i*.12+.32)});setTimeout(()=>c.close(),1500)}catch(e){}}
 function levelUp(L){const d=document.createElement("div");d.className="up";const nw=[];CATS.forEach(c=>c[1].forEach(it=>{if(it[1]==L)nw.push(c[0].split(" ")[0]+" "+it[0])}));const tt=TITLES.find(t=>t[0]==L);
-d.innerHTML=`<div><div style="font-size:44px">👑</div><div style="font-weight:800;color:var(--pk)">LEVEL UP!</div><h2>Lv ${L}</h2><div style="font-weight:800">${title(L)}${tt?" ✨新稱號":""}</div>${nw.length?"<div style='margin-top:8px'>精品店解鎖："+nw.join("、")+"</div>":""}<div class="mu" style="margin-top:8px">點一下關閉</div></div>`;
+d.innerHTML=`<div><div style="font-size:52px">👑</div><div style="font-weight:800;color:var(--pk)">LEVEL UP!</div><h2>Lv ${L}</h2><div style="font-weight:800">${title(L)}${tt?" ✨新稱號":""}</div>${nw.length?"<div style='margin-top:8px'>精品店解鎖："+nw.join("、")+"</div>":""}<div class="mu" style="margin-top:8px">點一下關閉</div></div>`;
 d.onclick=()=>d.remove();document.body.appendChild(d);setTimeout(()=>d.remove(),3300);beep();
 for(let k=0;k<18;k++){const c=document.createElement("span");c.className="cf";c.textContent=["💎","✨","👜","💖"][k%4];c.style.left=Math.random()*100+"vw";c.style.animationDelay=Math.random()*.5+"s";document.body.appendChild(c);setTimeout(()=>c.remove(),2600)}}
 function hud(){const[l,e,n]=lv();document.getElementById("hud").innerHTML=`<div class="t">Lv${l} ${title(l)}</div><div class="bar"><i style="width:${e/n*100}%"></i></div><div class="row"><span>EXP ${e}/${n}</span><span>💰 ${fmt(S.coin)}</span><span>身價 ${fmt(worth())}</span></div>`}
@@ -71,7 +75,7 @@ const shuf=a=>a.map(x=>[Math.random(),x]).sort((p,r)=>p[0]-r[0]).map(x=>x[1]);
 const M=document.getElementById("main");let tab="learn",idx=0;
 const TABS=[["story","📖<br>課文"],["learn","📇<br>單字"],["boss","⚔️<br>Boss"],["shop","🛍️<br>精品店"],["me","💼<br>資產"]];
 function nav(){document.getElementById("nav").innerHTML=TABS.map(t=>`<button class="${t[0]==tab?"on":""}" onclick="go('${t[0]}')">${t[1]}</button>`).join("")}
-function go(t){tab=t;nav();au.pause();q=[];({story,learn,boss,shop,me})[t]();scrollTo(0,0)}
+function go(t){if(typeof stopE=='function')stopE();tab=t;nav();au.pause();q=[];({story,learn,boss,shop,me})[t]();scrollTo(0,0)}
 
 let ch=0,showTr=false;const SD=()=>S.sd||(S.sd={});
 const esc=t=>t.replace(/&/g,"&amp;").replace(/</g,"&lt;");
@@ -100,24 +104,40 @@ return{t:2,i:k,opts:shuf([k,...shuf(ks).slice(0,3)]),sent:esc(s).replace(new Reg
 let FB;function fb(){FB=mkB(ch);document.getElementById("fb").innerHTML=`<h2>✏️ 課文填空</h2><div class="mu">選出空格的單字（原形）</div><div class="sq">${FB.sent}</div><div id="fo">${FB.opts.map(j=>`<button class="g" onclick="fa(this,${j})">${W[j][0]}</button>`).join("")}</div><button id="fn" onclick="fb()" hidden>下一題 ›</button>`}
 function fa(b,j){const bs=document.querySelectorAll("#fo button");bs.forEach(x=>x.disabled=true);const ok=j==FB.i;b.classList.add(ok?"ok":"no");if(ok){gain(15,25);toast("✅ 填對了！")}else{bs[FB.opts.indexOf(FB.i)].classList.add("ok");gain(3,0);toast("❌ 再加油")}play([FB.i+"w"]);document.getElementById("fn").hidden=false}
 
-function learn(){M.innerHTML=`<div class="card" id="cur"></div>
-<div class="card"><h2>📇 單字卡（${W.length}）</h2><div class="mu">點卡片聽發音，並切換到這張練習</div><div class="ga" id="ga"></div></div>
+let grp=3,rate=0.8,run=0,echoing=false;const GR=[[0,9,"1–9"],[9,18,"10–18"],[18,27,"19–27"],[0,27,"全部"]];
+const au2=new Audio();au2.preservesPitch=true;au2.webkitPreservesPitch=true;
+const IMG=k=>`img/w2/${k}.webp`;
+function learn(){if(idx<GR[grp][0]||idx>=GR[grp][1])idx=GR[grp][0];
+M.innerHTML=`<div class="seg">${GR.map((g,k)=>`<button class="${k==grp?"on":""}" onclick="stopE();grp=${k};idx=${g[0]};learn()">${g[2]}</button>`).join("")}</div>
+<div class="card" id="cur" style="text-align:center"></div>
+<button class="g" onclick="once()">🔊 念一次</button>
+<div class="three"><button class="g" onclick="stopE();mv(-1)">‹ 上一個</button><button id="pl" onclick="echoing?stopE():echoRun()">▶ 回音法播放</button><button class="g" onclick="stopE();mv(1)">下一個 ›</button></div>
+<div class="mu">語速</div><div class="seg">${[0.6,0.8,1.0].map(r=>`<button class="${r==rate?"on":""}" onclick="rate=${r};learn()">${r==1?"正常":r+"x"}</button>`).join("")}</div>
+<div class="card"><h2>🖼️ 圖卡</h2><div class="mu">點圖卡聽發音，並切換到這張卡練習</div><div class="ga" id="ga"></div></div>
 <div class="card" id="qz"></div>
-<p class="mu" style="text-align:center">⚔️ 練夠了？到下方「Boss」挑戰魔王</p>`;cur();grid();quiz(1)}
-function cur(){const w=W[idx],d=S.done[idx];document.getElementById("cur").innerHTML=`<div class="mu">單字 ${idx+1} / ${W.length} ${d?"✅":""}</div><div class="big">${w[0]}</div><div class="ipa">${w[1]}</div><div class="zh">${w[2]}</div><div class="ph"><b>${w[3]}</b><br><span class="mu">${w[4]}</span></div>
-<div class="cue">回音法：聽 → 心裡回音 → 大聲跟讀</div>
-<button onclick="play(['${idx}w','${idx}w','${idx}p']);gain(S.done[${idx}]?3:10,5,'pw')">🔊 播放（單字×2 + 片語）</button>
-<div class="two"><button class="g" onclick="play(['${idx}p']);gain(3,2,'pp')">🔁 只聽片語</button><button onclick="echo()">🗣️ 跟讀完了</button></div>
-<div class="two"><button class="g" onclick="sel((idx+W.length-1)%W.length)">← 上一個</button><button class="g" onclick="sel((idx+1)%W.length)">下一個 →</button></div>`}
-function grid(){document.getElementById("ga").innerHTML=W.map((w,k)=>`<div class="ca${k==idx?" on":""}" onclick="tap(${k})"><b>${w[0]}</b><div class="mu">${w[2].split(/[、；]/)[0]}</div>${S.done[k]?'<span class="dn">✅</span>':""}</div>`).join("")}
+<p class="mu" style="text-align:center">節奏：每張卡念兩次（單字＋片語），每次後先「回音」（心裡默念）再「跟讀」（大聲說），然後自動換下一張。</p>`;cur();grid();quiz(1)}
+function cur(){const w=W[idx],d=S.done[idx];document.getElementById("cur").innerHTML=`<div class="mu">${idx-GR[grp][0]+1} / ${GR[grp][1]-GR[grp][0]} ${d?"✅":""}</div><img class="mp" src="${IMG(idx)}" alt=""><div class="big" id="ww">${w[0]}</div><div class="ipa">${w[1]}</div><div class="zh">${w[2]}</div><div class="ph"><b>${w[3]}</b><br><span class="mu">${w[4]}</span></div><div class="cue2" id="cue">按「回音法播放」開始</div>`;const p=document.getElementById("pl");if(p)p.textContent=echoing?"⏸ 暫停":"▶ 回音法播放"}
+function grid(){const g=GR[grp];let h="";for(let k=g[0];k<g[1];k++){const w=W[k];h+=`<div class="ca${k==idx?" on":""}" onclick="tap(${k})"><img loading="lazy" src="${IMG(k)}" alt=""><b>${w[0]}</b><div class="mu">${w[2].split(/[、；]/)[0]}</div>${S.done[k]?'<span class="dn">✅</span>':""}</div>`}document.getElementById("ga").innerHTML=h}
 function sel(k){idx=k;cur();grid()}
-function tap(k){sel(k);play([k+"w"]);gain(S.done[k]?3:10,5,'c'+k);document.getElementById("cur").scrollIntoView({behavior:"smooth"})}
-function echo(){const d=S.done[idx];S.done[idx]=1;gain(d?5:12,d?8:20,'echo');sel((idx+1)%W.length)}
+function mv(d){const g=GR[grp];sel(g[0]+((idx-g[0]+d+(g[1]-g[0]))%(g[1]-g[0])))}
+function play1(key){return new Promise(res=>{let st=0,done=false;const fin=()=>{if(done)return;done=true;let d=st?(performance.now()-st)/1000:0;if(!(d>0.2))d=(au2.duration||1)/rate;res(d)};
+au2.onended=fin;au2.onerror=fin;au2.onpause=fin;au2.onplaying=()=>{if(!st)st=performance.now()};au2.src=C[key];au2.playbackRate=rate;au2.defaultPlaybackRate=rate;const p=au2.play();if(p)p.catch(fin);setTimeout(fin,15000)})}
+const wait=s=>new Promise(r=>setTimeout(r,s*1000));
+async function seq(keys){let t=0;for(const k of keys)t+=await play1(k);return t}
+function cue(p){const e=document.getElementById("cue");if(!e)return;e.textContent={listen:"👂 聽",echo:"💭 回音・心裡默念",shadow:"🗣️ 跟讀・大聲說出來"}[p]||"按「回音法播放」開始";e.className="cue2"+(p?" "+p:"")}
+function stopE(){run++;echoing=false;au2.pause();au.pause();q=[];cue("");const p=document.getElementById("pl");if(p)p.textContent="▶ 回音法播放"}
+async function once(){stopE();const r=run;gain(S.done[idx]?3:10,5,'pw');await seq([idx+"w",idx+"p"])}
+function tap(k){stopE();sel(k);gain(S.done[k]?3:10,5,'c'+k);seq([k+"w"])}
+async function echoRun(){au.pause();q=[];const r=++run,ok=()=>run===r&&tab=="learn";echoing=true;cur();
+while(ok()&&idx<GR[grp][1]){for(let k=0;k<2;k++){cue("listen");const d=await seq([idx+"w",idx+"p"]);if(!ok())return;cue("echo");await wait(Math.min(d,3));if(!ok())return;cue("shadow");await wait(Math.max(1.5,d+1));if(!ok())return}
+const dn=S.done[idx];S.done[idx]=1;gain(dn?5:12,dn?8:20);if(idx+1>=GR[grp][1])break;sel(idx+1);document.getElementById("cur").scrollIntoView({behavior:"smooth",block:"start"})}
+if(ok()){echoing=false;cue("");cur();grid();toast("🎉 這組練完了！")}}
+function echo(){const d=S.done[idx];S.done[idx]=1;gain(d?5:12,d?8:20,'echo');mv(1)}
 function mkQ(){const i=Math.floor(Math.random()*W.length),t=Math.random()<.5;const opts=shuf([i,...shuf(W.map((_,j)=>j).filter(j=>j!=i)).slice(0,3)]);return{i,t,opts}}
 let QQ,qn=0,streak=0;
 function quiz(silent){QQ=mkQ();const w=W[QQ.i];
 document.getElementById("qz").innerHTML=`<h2>❓ 小測驗</h2><div class="mu">${QQ.t?"聽音 / 看英文 → 選中文":"看中文 → 選英文"}　🔥連對 ${streak}</div>
-${QQ.t?`<div class="big">${w[0]}</div><button class="g" onclick="play(['${QQ.i}w']);gain(2,0,'qa')">🔊 聽發音</button>`:`<div class="zh" style="font-size:22px;margin:16px 0">${w[2]}</div>`}
+${QQ.t?`<div class="big">${w[0]}</div><button class="g" onclick="play(['${QQ.i}w']);gain(2,0,'qa')">🔊 聽發音</button>`:`<div class="zh" style="font-size:26px;margin:16px 0">${w[2]}</div>`}
 <div id="op">${QQ.opts.map(j=>`<button class="g" onclick="ans(this,${j})">${QQ.t?W[j][2]:W[j][0]}</button>`).join("")}</div><button id="nq" onclick="quiz()" hidden>下一題 ›</button>`;
 if(QQ.t&&!silent)play([QQ.i+"w"])}
 function ans(b,j){document.querySelectorAll("#op button").forEach(x=>x.disabled=true);const ok=j==QQ.i;
@@ -127,7 +147,7 @@ let B=null;
 function boss(){if(!B){M.innerHTML=`<div class="card"><h2>${BOSS.name}</h2><p>魔王 HP ${BOSS.hp}，你有 5 顆 ❤️。答對每題打 20 傷害，答錯扣 1 顆心。</p><p class="mu">打贏：+150 EXP +500💰${S.own.includes("boss")?"":"，掉落「"+BOSS.drop[0]+"」"}（已打贏 ${S.boss} 次）</p><button onclick="B={hp:${BOSS.hp},me:5};bq()">⚔️ 開戰！</button></div>`;return}bq()}
 function bq(){QQ=Math.random()<.4?mkB(-1):mkQ();const w=W[QQ.i];if(QQ.t==2){M.innerHTML=`<div class="card"><h2>${BOSS.name}</h2><div class="hp">👹 HP ${"🟥".repeat(B.hp/20)}${"⬜".repeat((BOSS.hp-B.hp)/20)}</div><div class="hp">你 ${"❤️".repeat(B.me)}${"🖤".repeat(5-B.me)}</div><div class="mu">課文填空（選原形）</div><div class="sq">${QQ.sent}</div><div id="op">${QQ.opts.map(j=>`<button class="g" onclick="bans(this,${j})">${W[j][0]}</button>`).join("")}</div></div>`;return}
 M.innerHTML=`<div class="card"><h2>${BOSS.name}</h2><div class="hp">👹 HP ${"🟥".repeat(B.hp/20)}${"⬜".repeat((BOSS.hp-B.hp)/20)}</div><div class="hp">你 ${"❤️".repeat(B.me)}${"🖤".repeat(5-B.me)}</div>
-${QQ.t?`<div class="big">${w[0]}</div>`:`<div class="zh" style="font-size:22px;margin:14px 0">${w[2]}</div>`}
+${QQ.t?`<div class="big">${w[0]}</div>`:`<div class="zh" style="font-size:26px;margin:14px 0">${w[2]}</div>`}
 <div id="op">${QQ.opts.map(j=>`<button class="g" onclick="bans(this,${j})">${QQ.t?W[j][2]:W[j][0]}</button>`).join("")}</div></div>`;if(QQ.t)play([QQ.i+"w"])}
 function bans(b,j){document.querySelectorAll("#op button").forEach(x=>x.disabled=true);const ok=j==QQ.i;b.classList.add(ok?"ok":"no");if(ok){B.hp-=20;gain(15,10);toast("💥 20 傷害！")}else{B.me--;gain(3,0);toast("💔 被搶走了！")}
 setTimeout(()=>{if(B.hp<=0){S.boss++;let m="";if(!S.own.includes("boss")){S.own.push("boss");m="<p>🎁 掉落："+BOSS.drop[0]+"</p>"}gain(150,500);B=null;M.innerHTML=`<div class="card"><h2>🏆 打敗魔王！</h2><p>+150 EXP +500💰</p>${m}<button onclick="go('boss')">再打一次</button></div>`}
